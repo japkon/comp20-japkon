@@ -1,3 +1,5 @@
 Around 2-3 hours were spent on this lab. I initially tried embedding the .gif in the HTML itself, but found it was much harder to manipulate with the CSS file. So instead, I used the "background-image" selector in the body{} rule. At first, I could not figure out how to get the gif to disappear when the browser was too small, but Sid Prasad helped me by suggesting I check out @media. With this, I was able to check to see if the window was larger than 992 pixels, and if it was, I hid the message ("No OMFG dogs for you!") and showed the .gif (in a tiled, full-screen format).
 
 Most of the struggle was figuring out how to hide the .gif. Moving the link and changing its color were relatively simple to figure out, as was looping the audio for the webpage. 
+
+I finished the whole assignment before pushing it to git as it took me a little bit of time to figure out how to set up the private repo on my own computer and how to get the omfgdogs folder inside of it. Once I figured it out, I just added the entire folder at once and pushed it to git. 
