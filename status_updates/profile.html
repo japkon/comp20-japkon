@@ -5,6 +5,22 @@
 
 <head>
 <title>Fecesbook</title>
+<script>
+	function addMessage(){
+		var message = document.getElementById("msg").value;
+		var timeStamp = new Date();
+		var month = timeStamp.getMonth() + 1;
+		var day = timeStamp.getDate();
+		var year = timeStamp.getFullYear();
+		var hour = timeStamp.getHours();
+		var minute = timeStamp.getMinutes();
+		var date = month + "/" + day + "/" + year + " " + hour + ":" + minute + " - ";
+		var message_and_date = date + message
+		var node = document.createTextNode(message_and_date);
+		var list = document.getElementById("status");
+		list.insertBefore(node, list.firstChild);
+	}
+</script>
 </head>
 
 <body>
@@ -20,7 +36,7 @@
 		</ul>
 	</div>
 	<h2 id="fullname">Barney Gumble</h2>
-	<h3>What are you thinking about? <input type="text" id="msg" name="msg" size="30" /></h3>
+	<h3>What are you thinking about? <input type="text" id="msg" name="msg" size="30" onchange="addMessage()"/></h3>
 	<h3>Updates</h3>
 	<div id="status">
 	</div>
