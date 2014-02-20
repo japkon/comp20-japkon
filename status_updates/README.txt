@@ -1,1 +1,1 @@
-This is the readme.
+This lab only took a couple of hours. The bulk of it was figuring out how to manipulate the DOM and create nodes. I could not figure out how to add more than one line break between updates (adding the same line of code twice didn't work), and there was an extra line break before the updates. Other than that, the list is in the correct order, with the correct time stamp.
