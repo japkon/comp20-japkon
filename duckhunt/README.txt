@@ -1,1 +1,1 @@
-This is the README
+All of the images were successfully drawn on the canvas. Each image was drawn with the drawImage() method. Overall, the assignment took around 3 hours to complete. Much of the time was spent getting the first drawImage() to work, and after the first image was drawn, the remaining ones went rather quickly. 
