@@ -12,14 +12,9 @@
 		var job_list = document.getElementById("list");
 		for(var i = 0; i < parsed.length; i++){
 			var paragraph = document.createElement("p");
-			// var line_break = document.createElement("br")
-			// job_list.appendChild(paragraph);
 			var company = "Company: " + parsed[i]["company"];
-			// job_list.appendChild(company);
 			var location = "Location: " + parsed[i]["location"];
-			// job_list.appendChild(location);
 			var position = "Position: " + parsed[i]["position"];
-			// job_list.appendChild(position);
 			paragraph.innerText = company + "\n\n" + location + "\n\n" + position;
 			job_list.appendChild(paragraph);
 		}
