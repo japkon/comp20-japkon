@@ -136,25 +136,25 @@ function draw_stations(my_line){
 	for (var i = 0; i < stops.length; i++){
 		if (stops[i].line == my_line){
 			stop_loc = new google.maps.LatLng(stops[i].lat, stops[i].lng)
-			stop_markers[i] = new google.maps.Marker({
+			stop_markers.push(new google.maps.Marker({
 				position: stop_loc,
 				title: stops[i].name,
 				//icon: image,
 				animation: google.maps.Animation.DROP
-			});
-			stop_markers[i].setMap(map);
-
-			content[i] = "<h1>" + stops[i].name + "</h1>";
-			content[i] += '<table id="trains"><tr><th>Direction</th><th>Time Remaining</th></tr>';
-
-			google.maps.event.addListener(stop_markers[i], 'click', function() {
-				infowindow.setContent(content[i]);
-				infowindow.open(map, stop_markers[i]);
-			});
+			}));
+			content.push("<h1>" + stops[i].name + "</h1>" + '<table id="trains"><tr><th>Direction</th><th>Time Remaining</th></tr>')
 
 			train_path[counter] = stop_loc;
 			counter++;
 		}
+	}
+
+	for (var j = 0; j < stop_markers.length; j++){
+		stop_markers[j].setMap(map);
+		google.maps.event.addListener(stop_markers[j], 'click', function() {
+				infowindow.setContent(content[j]);
+				infowindow.open(map, stop_markers[j]);
+		});
 	}
 
 	poly_line = new google.maps.Polyline({
