@@ -10,7 +10,7 @@ var map;
 var marker;
 var stop_markers = new Array();
 var infowindow = new google.maps.InfoWindow();
-var stop_loc
+var stop_loc;
 var stops = [{"line":"blue", "name":"Airport", "lat":42.374262, "lng":-71.030395},
   			{"line":"blue", "name":"Aquarium", "lat":42.359784, "lng":-71.051652},
   			{"line":"blue", "name":"Beachmont", "lat":42.39754234, "lng":-70.99231944},
