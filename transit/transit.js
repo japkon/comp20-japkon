@@ -118,7 +118,7 @@ function draw_stations(my_line){
 	var counter = 0;
 	var color;
 	var image = {
-		url: 'logo.png'
+		url: 'logo.png',
 		size: new google.maps.Size(25, 25)
 	};
 	if (my_line == 'red'){
