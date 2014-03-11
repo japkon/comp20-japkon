@@ -2,7 +2,7 @@ var lat = 0;
 var lng = 0;
 var me = new google.maps.LatLng(lat, lng);
 var mapOptions = {
-	zoom: 9,
+	zoom: 12,
 	center: me,
 	mapTypeId: google.maps.MapTypeId.ROADMAP
 };
@@ -117,12 +117,13 @@ function data_ready(){
 function draw_stations(my_line){
 	var counter = 0;
 	var color;
-	var image = {
-		url: 'logo.png',
-		size: new google.maps.Size(30, 30),
-		origin: new google.maps.Point(0, 0),
-		anchor: new google.maps.Point(15, 15)
-	};
+	var content;
+	//var image = {
+		//url: 'logo.png',
+		//size: new google.maps.Size(30, 30),
+		//origin: new google.maps.Point(0, 0),
+		//anchor: new google.maps.Point(15, 15)
+	//};
 	if (my_line == 'red'){
 		color = '#FF0000';
 	} else if (my_line == 'blue') {
@@ -137,10 +138,19 @@ function draw_stations(my_line){
 			marker = new google.maps.Marker({
 				position: stop_loc,
 				title: stops[i].name,
-				icon: image,
+				//icon: image,
 				animation: google.maps.Animation.DROP
 			});
 			marker.setMap(map);
+
+			content = "<h1>" + stops[i].name + "</h1>";
+			content += '<table id="trains"><tr><th>Direction</th><th>Time Remaining</th></tr>';
+
+			google.maps.event.addListener(marker, 'click', function() {
+				infowindow.setContent(content);
+				infowindow.open(map, marker);
+			});
+
 			train_path[counter] = stop_loc;
 			counter++;
 		}
