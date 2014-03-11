@@ -174,7 +174,7 @@ function draw_lines(my_line){
 			geodesic: true,
 			strokeColor: color,
 			strokeOpacity: 1.0,
-			strokeWeight: 2
+			strokeWeight: 4
 		});
 		poly_line.setMap(map);
 	} else {
@@ -193,7 +193,7 @@ function draw_lines(my_line){
 			geodesic: true,
 			strokeColor: color,
 			strokeOpacity: 1.0,
-			strokeWeight: 2
+			strokeWeight: 4
 		});
 		poly_line.setMap(map);
 
@@ -211,7 +211,7 @@ function draw_lines(my_line){
 			geodesic: true,
 			strokeColor: color,
 			strokeOpacity: 1.0,
-			strokeWeight: 2
+			strokeWeight: 4
 		});
 		poly_line2.setMap(map);
 	}
