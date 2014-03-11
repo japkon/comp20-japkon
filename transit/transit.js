@@ -117,7 +117,12 @@ function data_ready(){
 function draw_stations(my_line){
 	var counter = 0;
 	var color;
-	var image = 'logo.png'
+	var image = {
+		url: 'logo.png',
+		size: new google.maps.Size(30, 30),
+		origin: new google.mapsPoint(0, 0),
+		anchor: new google.maps.Point(15, 15)
+	};
 	if (my_line == 'red'){
 		color = '#FF0000';
 	} else if (my_line == 'blue') {
