@@ -9,11 +9,11 @@ var mapOptions = {
 var map;
 var marker;
 
-var station = {
-	stop_markers,
-	content_string,
-	infowindow = new google.maps.InfoWindow();
-};
+//var station = {
+//	stop_markers,
+//	content_string,
+//	infowindow = new google.maps.InfoWindow();
+//};
 
 var stop_markers = [];
 var content_string = [];
@@ -138,7 +138,8 @@ function draw_stations(my_line){
 				position: stop_loc,
 				title: stops[i].name,
 				icon: 'logo.png',
-				animation: google.maps.Animation.DROP
+				animation: google.maps.Animation.DROP,
+				index: stop_counter
 			}));
 			content_string.push(stops[i].name);
 			stop_markers[stop_markers.length - 1].setMap(map);
@@ -146,14 +147,14 @@ function draw_stations(my_line){
 		}
 	}
 
-	// for (var j = 0; j < stop_markers.length; j++){
-	// 	google.maps.event.addListener(stop_markers[j], 'click', function() {
-	// 		console.log("hello");
-	// 		console.log(content_string[j]);
-	// 		infowindow.setContent(content_string[j]);
-	// 		infowindow.open(map, stop_markers[j]);
-	// 	});
-	// }
+	for (var j = 0; j < stop_markers.length; j++){
+		google.maps.event.addListener(stop_markers[j], 'click', function() {
+			console.log(j);
+			console.log(content_string[j]);
+			infowindow.setContent(content_string[j]);
+			infowindow.open(map, stop_markers[j]);
+		});
+	}
 }
 
 function draw_lines(my_line){
