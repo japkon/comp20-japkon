@@ -64,7 +64,7 @@ var stops = [{"line":"blue", "name":"Bowdoin", "lat":42.361365, "lng":-71.062037
   		{"line":"red", "name":"Andrew", "lat":42.330154, "lng":-71.057655},
   		{"line":"red", "name":"JFK/UMass", "lat":42.320685, "lng":-71.052391},
   		{"line":"red", "name":"North Quincy", "lat":42.275275, "lng":-71.029583},
-  		{"line":"red", "name":"Wollaston", "lat":42.2665139, "lng":-71.0203369}
+  		{"line":"red", "name":"Wollaston", "lat":42.2665139, "lng":-71.0203369},
   		{"line":"red", "name":"Quincy Center", "lat":42.251809, "lng":-71.005409},
   		{"line":"red", "name":"Quincy Adams", "lat":42.233391, "lng":-71.007153},
   		{"line":"red", "name":"Braintree", "lat":42.2078543, "lng":-71.0011385},
