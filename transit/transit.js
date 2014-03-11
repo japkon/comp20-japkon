@@ -42,6 +42,7 @@ function render(){
 		position: me,
 		title: "You are here at " + lat + " " + lng + "."
 	});
+	marker.setMap(map);
 
 	google.maps.event.addListener(marker, 'click', function() {
 		infowindow.setContent(marker.title);
