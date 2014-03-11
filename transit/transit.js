@@ -8,7 +8,7 @@ var mapOptions = {
 };
 var map;
 var marker;
-var infowindow = new google.map.InfoWindow();
+var infowindow = new google.maps.InfoWindow();
 
 
 function initialize(){
