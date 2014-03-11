@@ -10,7 +10,7 @@ var map;
 var marker;
 var infowindow = new google.maps.InfoWindow();
 var stop_loc
-var stops = '[{"line":"blue","name":"Airport","location":{"lat":42.374262,"lng":-71.030395}, 
+var stops = '[{"line":"blue","name":"Airport","location":{"lat":42.374262,"lng":-71.030395}}, 
 			{"line":"blue","name":"Aquarium","location":{"lat":42.359784,"lng":-71.051652}}]';
 //Blue,Beachmont,42.39754234,-70.99231944
 //Blue,Bowdoin,42.361365,-71.062037
