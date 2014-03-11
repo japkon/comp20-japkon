@@ -118,7 +118,7 @@ function data_ready(){
 function draw_stations(my_line){
 	var counter = 0;
 	var color;
-	var content;
+	var content = new Array();
 	//var image = {
 		//url: 'logo.png',
 		//size: new google.maps.Size(30, 30),
@@ -144,11 +144,11 @@ function draw_stations(my_line){
 			});
 			stop_markers[i].setMap(map);
 
-			content = "<h1>" + stops[i].name + "</h1>";
-			content += '<table id="trains"><tr><th>Direction</th><th>Time Remaining</th></tr>';
+			content[i] = "<h1>" + stops[i].name + "</h1>";
+			content[i] += '<table id="trains"><tr><th>Direction</th><th>Time Remaining</th></tr>';
 
 			google.maps.event.addListener(stop_markers[i], 'click', function() {
-				infowindow.setContent(content);
+				infowindow.setContent(content[i]);
 				infowindow.open(map, stop_markers[i]);
 			});
 
