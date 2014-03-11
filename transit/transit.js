@@ -3,14 +3,14 @@ var lng = 0;
 var me = new google.maps.LatLng(lat, lng);
 var mapOptions = {
 	zoom: 12,
-	center: me,
+	center: new google.maps.LatLng(42.3581, -71.0636),
 	mapTypeId: google.maps.MapTypeId.ROADMAP
 };
 var map;
 var marker;
 
 var stop_markers = [];
-var content = [];
+var content_string = [];
 var infowindow = new google.maps.InfoWindow();
 
 var train_path = new Array();
@@ -122,12 +122,6 @@ function data_ready(){
 }
 
 function draw_stations(my_line){
-	//var image = {
-		//url: 'logo.png',
-		//size: new google.maps.Size(30, 30),
-		//origin: new google.maps.Point(0, 0),
-		//anchor: new google.maps.Point(15, 15)
-	//};
 
 	// Loop through the array of stops and add stops of the correct line to the map
 	for (var i = 0; i < stops.length; i++){
@@ -136,17 +130,18 @@ function draw_stations(my_line){
 			stop_markers.push(new google.maps.Marker({
 				position: stop_loc,
 				title: stops[i].name,
-				//icon: image,
+				icon: 'logo.png',
 				animation: google.maps.Animation.DROP
 			}));
-			content.push("<h1>"+stops[i].name+"</h1>" + '<table id="trains"><tr><th>Direction</th><th>Time Remaining</th></tr>')
+			content_string.push("<h1>"+stops[i].name+"</h1>" + 
+				'<table id="trains"><tr><th>Direction</th><th>Time Remaining</th></tr>');
 		}
 	}
 
 	for (var j = 0; j < stop_markers.length; j++){
 		stop_markers[j].setMap(map);
 		google.maps.event.addListener(stop_markers[j], 'click', function() {
-				infowindow.setContent(content[j]);
+				infowindow.setContent(content_string[j]);
 				infowindow.open(map, stop_markers[j]);
 		});
 	}
@@ -174,7 +169,7 @@ function draw_lines(my_line){
 			geodesic: true,
 			strokeColor: color,
 			strokeOpacity: 1.0,
-			strokeWeight: 4
+			strokeWeight: 6
 		});
 		poly_line.setMap(map);
 	} else {
@@ -193,7 +188,7 @@ function draw_lines(my_line){
 			geodesic: true,
 			strokeColor: color,
 			strokeOpacity: 1.0,
-			strokeWeight: 4
+			strokeWeight: 6
 		});
 		poly_line.setMap(map);
 
@@ -211,7 +206,7 @@ function draw_lines(my_line){
 			geodesic: true,
 			strokeColor: color,
 			strokeOpacity: 1.0,
-			strokeWeight: 4
+			strokeWeight: 6
 		});
 		poly_line2.setMap(map);
 	}
