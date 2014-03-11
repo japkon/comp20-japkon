@@ -130,7 +130,8 @@ function draw_stations(my_line){
 			stop_loc = new google.maps.LatLng(stops[i].lat, stops[i].lng)
 			marker = new google.maps.Marker({
 				position: stop_loc,
-				title: stops[i].name
+				title: stops[i].name,
+				icon: 'logo.png'
 			});
 			marker.setMap(map);
 			train_path[counter] = stop_loc;
