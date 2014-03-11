@@ -8,6 +8,7 @@ var mapOptions = {
 };
 var map;
 var marker;
+var stop_markers = new Array();
 var infowindow = new google.maps.InfoWindow();
 var stop_loc
 var stops = [{"line":"blue", "name":"Airport", "lat":42.374262, "lng":-71.030395},
@@ -135,20 +136,20 @@ function draw_stations(my_line){
 	for (var i = 0; i < stops.length; i++){
 		if (stops[i].line == my_line){
 			stop_loc = new google.maps.LatLng(stops[i].lat, stops[i].lng)
-			marker = new google.maps.Marker({
+			stop_markers[i] = new google.maps.Marker({
 				position: stop_loc,
 				title: stops[i].name,
 				//icon: image,
 				animation: google.maps.Animation.DROP
 			});
-			marker.setMap(map);
+			stop_markers[i].setMap(map);
 
 			content = "<h1>" + stops[i].name + "</h1>";
 			content += '<table id="trains"><tr><th>Direction</th><th>Time Remaining</th></tr>';
 
-			google.maps.event.addListener(marker, 'click', function() {
+			google.maps.event.addListener(stop_markers[i], 'click', function() {
 				infowindow.setContent(content);
-				infowindow.open(map, marker);
+				infowindow.open(map, stop_markers[i]);
 			});
 
 			train_path[counter] = stop_loc;
