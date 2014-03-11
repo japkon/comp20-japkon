@@ -63,7 +63,9 @@ var stops = [{"line":"blue", "name":"Airport", "lat":42.374262, "lng":-71.030395
   			{"line":"red", "name":"Shawmut", "lat":42.29312583, "lng":-71.06573796000001 },
   			{"line":"red", "name":"South Station", "lat":42.352271, "lng":-71.05524200000001 },
   			{"line":"red", "name":"Wollaston", "lat":42.2665139, "lng":-71.0203369 }];
-
+var train_path;
+var poly_line;
+var closest;
 
 function initialize(){
 	map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
@@ -113,8 +115,16 @@ function data_ready(){
 }
 
 function draw_stations(my_line){
-	//parsed_stops = JSON.parse(stops);
-
+	var counter = 0;
+	var color;
+	if (my_line == red){
+		color = '#FF0000';
+	} else if (my_line == blue) {
+		color = '#0000FF';
+	} else if (my_line == orange){
+		color = '#FF6600';
+	}
+	// Loop through the array of stops and add stops of the correct line to the map
 	for (var i = 0; i < stops.length; i++){
 		if (stops[i].line == my_line){
 			stop_loc = new google.maps.LatLng(stops[i].lat, stops[i].lng)
@@ -123,8 +133,19 @@ function draw_stations(my_line){
 				title: stops[i].name
 			});
 			marker.setMap(map);
+			train_path[counter] = stop_loc;
+			counter++;
 		}
 	}
+
+	poly_line = new google.maps.Polyline({
+		path: train_path,
+		geodesic: true,
+		strokeColor: color,
+		strokeOpacity: 1.0,
+		strokeWeight: 2
+	});
+	poly_line.setMap(map);
 }
 
 
