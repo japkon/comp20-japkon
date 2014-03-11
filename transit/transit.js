@@ -154,7 +154,6 @@ function draw_stations(my_line){
 
 function draw_lines(my_line){
 	var counter = 0;
-	var counter2 = 0;
 	var color;
 	if (my_line != 'red'){
 		if (my_line == 'blue') {
@@ -198,17 +197,14 @@ function draw_lines(my_line){
 		});
 		poly_line.setMap(map);
 
-		// Draw the Ashmont Red Line
-		for (var j = stops.length - 1; stops[j].name!= 'Braintree'; j++){
-				if(stops[i].line == my_line){
-				train_path2[counter2] = new google.maps.LatLng(stops[i].lat, stops[i].lng);
-				counter2++;
-			}
-		}
-
-		// Connect it to JFK
-		train_path2[counter2] = new google.maps.LatLng(42.320685, -71.052391);
-		counter2++;
+		// Draw the Ashmont Red Line to JFK
+		train_path2 = [
+			new google.maps.LatLng(42.320685, -71.052391),
+			new google.maps.LatLng(42.31129, -71.053331),
+			new google.maps.LatLng(42.300093, -71.061667),
+  			new google.maps.LatLng(42.29312583, -71.06573796000001),
+  			new google.maps.LatLng(42.284652, -71.06448899999999)
+  		];
 
 		poly_line2 = new google.maps.Polyline({
 			path: train_path2,
