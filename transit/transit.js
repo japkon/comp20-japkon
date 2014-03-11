@@ -10,7 +10,7 @@ var map;
 var marker;
 var infowindow = new google.maps.InfoWindow();
 var stop_loc
-var stops = '[{"line":"blue", "name":"Airport", "lat":42.374262, "lng":-71.030395},
+var stops = [{"line":"blue", "name":"Airport", "lat":42.374262, "lng":-71.030395},
   			{"line":"blue", "name":"Aquarium", "lat":42.359784, "lng":-71.051652},
   			{"line":"blue", "name":"Beachmont", "lat":42.39754234, "lng":-70.99231944},
   			{"line":"blue", "name":"Bowdoin", "lat":42.361365, "lng":-71.062037},
@@ -62,7 +62,7 @@ var stops = '[{"line":"blue", "name":"Airport", "lat":42.374262, "lng":-71.03039
   			{"line":"red", "name":"Savin Hill", "lat":42.31129, "lng":-71.053331 },
   			{"line":"red", "name":"Shawmut", "lat":42.29312583, "lng":-71.06573796000001 },
   			{"line":"red", "name":"South Station", "lat":42.352271, "lng":-71.05524200000001 },
-  			{"line":"red", "name":"Wollaston", "lat":42.2665139, "lng":-71.0203369 }]';
+  			{"line":"red", "name":"Wollaston", "lat":42.2665139, "lng":-71.0203369 }];
 
 
 function initialize(){
@@ -113,14 +113,14 @@ function data_ready(){
 }
 
 function draw_stations(my_line){
-	parsed_stops = JSON.parse(stops);
+	//parsed_stops = JSON.parse(stops);
 
-	for (var i = 0; i < parsed_stops.length; i++){
-		if (parsed_stops[i].line == my_line){
-			stop_loc = new google.maps.LatLng(parsed_stops[i].lat, parsed_stops[i].lng)
+	for (var i = 0; i < stops.length; i++){
+		if (stops[i].line == my_line){
+			stop_loc = new google.maps.LatLng(stops[i].lat, stops[i].lng)
 			marker = new google.maps.Marker({
 				position: stop_loc,
-				title: parsed_stops[i].name
+				title: stops[i].name
 			});
 			marker.setMap(map);
 		}
