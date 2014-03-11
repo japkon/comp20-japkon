@@ -120,7 +120,7 @@ function draw_stations(my_line){
 	var image = {
 		url: 'logo.png',
 		size: new google.maps.Size(30, 30),
-		origin: new google.mapsPoint(0, 0),
+		origin: new google.maps.Point(0, 0),
 		anchor: new google.maps.Point(15, 15)
 	};
 	if (my_line == 'red'){
