@@ -9,8 +9,15 @@ var mapOptions = {
 var map;
 var marker;
 
+var station = {
+	stop_markers,
+	content_string,
+	infowindow = new google.maps.InfoWindow();
+};
+
 var stop_markers = [];
 var content_string = [];
+var stop_counter = 0;
 var infowindow = new google.maps.InfoWindow();
 
 var train_path = new Array();
@@ -98,7 +105,7 @@ function locate_me(){
 function render(){
 	me = new google.maps.LatLng(lat, lng);
 	// Move the map to my location
-	map.panTo(me);
+	//map.panTo(me);
 
 	marker = new google.maps.Marker({
 		position: me,
@@ -133,18 +140,20 @@ function draw_stations(my_line){
 				icon: 'logo.png',
 				animation: google.maps.Animation.DROP
 			}));
-			content_string.push("<h1>"+stops[i].name+"</h1>" + 
-				'<table id="trains"><tr><th>Direction</th><th>Time Remaining</th></tr>');
+			content_string.push(stops[i].name);
+			stop_markers[stop_markers.length - 1].setMap(map);
+			stop_counter++;
 		}
 	}
 
-	for (var j = 0; j < stop_markers.length; j++){
-		stop_markers[j].setMap(map);
-		google.maps.event.addListener(stop_markers[j], 'click', function() {
-				infowindow.setContent(content_string[j]);
-				infowindow.open(map, stop_markers[j]);
-		});
-	}
+	// for (var j = 0; j < stop_markers.length; j++){
+	// 	google.maps.event.addListener(stop_markers[j], 'click', function() {
+	// 		console.log("hello");
+	// 		console.log(content_string[j]);
+	// 		infowindow.setContent(content_string[j]);
+	// 		infowindow.open(map, stop_markers[j]);
+	// 	});
+	// }
 }
 
 function draw_lines(my_line){
