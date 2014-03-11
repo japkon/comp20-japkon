@@ -8,6 +8,7 @@ var mapOptions = {
 };
 var map;
 var marker;
+var infowindow = new google.map.InfoWindow();
 
 
 function initialize(){
@@ -39,7 +40,7 @@ function render(){
 
 	marker = new google.maps.Marker({
 		position: me,
-		title: "You are here."
+		title: "You are here at " + lat + " " + lng + "."
 	});
 
 	google.maps.event.addListener(marker, 'click', function() {
