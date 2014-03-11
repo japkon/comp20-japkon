@@ -117,11 +117,11 @@ function data_ready(){
 function draw_stations(my_line){
 	var counter = 0;
 	var color;
-	if (my_line == red){
+	if (my_line == 'red'){
 		color = '#FF0000';
-	} else if (my_line == blue) {
+	} else if (my_line == 'blue') {
 		color = '#0000FF';
-	} else if (my_line == orange){
+	} else if (my_line == 'orange'){
 		color = '#FF6600';
 	}
 	// Loop through the array of stops and add stops of the correct line to the map
