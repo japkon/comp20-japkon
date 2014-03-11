@@ -33,16 +33,16 @@ function locate_me(){
 }
 
 function render(){
-	me = new google.maps.LatLng(lat, lng);
+	//me = new google.maps.LatLng(lat, lng);
 	// Move the map to my location
-	map.panTo(me);
+	//map.panTo(me);
 
 	marker = new google.maps.Marker({
 		position: me,
 		title: "You are here."
 	});
 
-	google.maps.event.addListener(marker, "click", function() {
+	google.maps.event.addListener(marker, 'click', function() {
 		infowindow.setContent(marker.title);
 		infowindow.open(map, marker);
 	});
