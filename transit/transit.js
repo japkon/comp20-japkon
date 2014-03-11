@@ -18,11 +18,11 @@ function initialize(){
 function locate_me(){
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
-			// console.log("hello");
+			console.log("hello");
 			lat = position.coords.latitude;
-			// console.log(lat);
+			console.log(lat);
 			lng = position.coords.longitude;
-			// console.log(lng);
+			console.log(lng);
 			render()
 		});
 	} else {
