@@ -33,7 +33,7 @@ function locate_me(){
 }
 
 function render(){
-	//me = new google.maps.LatLng(lat, lng);
+	me = new google.maps.LatLng(lat, lng);
 	// Move the map to my location
 	map.panTo(me);
 
