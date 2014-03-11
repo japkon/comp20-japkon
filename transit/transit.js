@@ -119,7 +119,7 @@ function draw_stations(my_line){
 		if (parsed_stops[i].line == my_line){
 			stop_loc = new google.maps.LatLng(parsed_stops[i].lat, parsed_stops[i].lng)
 			marker = new google.maps.Marker({
-				position: stop_loc;
+				position: stop_loc,
 				title: parsed_stops[i].name
 			});
 			marker.setMap(map);
