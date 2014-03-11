@@ -117,10 +117,6 @@ function data_ready(){
 function draw_stations(my_line){
 	var counter = 0;
 	var color;
-	var image = {
-		url: 'logo.png',
-		size: new google.maps.Size(25, 25)
-	};
 	if (my_line == 'red'){
 		color = '#FF0000';
 	} else if (my_line == 'blue') {
@@ -135,7 +131,11 @@ function draw_stations(my_line){
 			marker = new google.maps.Marker({
 				position: stop_loc,
 				title: stops[i].name,
-				icon: image
+				icon: {
+					path: 'logo.png',
+					scale: 10
+				},
+				animation: google.maps.Animation.DROP
 			});
 			marker.setMap(map);
 			train_path[counter] = stop_loc;
