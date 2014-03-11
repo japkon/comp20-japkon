@@ -63,7 +63,7 @@ var stops = [{"line":"blue", "name":"Airport", "lat":42.374262, "lng":-71.030395
   			{"line":"red", "name":"Shawmut", "lat":42.29312583, "lng":-71.06573796000001 },
   			{"line":"red", "name":"South Station", "lat":42.352271, "lng":-71.05524200000001 },
   			{"line":"red", "name":"Wollaston", "lat":42.2665139, "lng":-71.0203369 }];
-var train_path;
+var train_path = new Array();
 var poly_line;
 var closest;
 
