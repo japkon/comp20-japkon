@@ -35,7 +35,7 @@ function locate_me(){
 function render(){
 	//me = new google.maps.LatLng(lat, lng);
 	// Move the map to my location
-	//map.panTo(me);
+	map.panTo(me);
 
 	marker = new google.maps.Marker({
 		position: me,
