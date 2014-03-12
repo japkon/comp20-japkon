@@ -147,7 +147,7 @@ function draw_stations(my_line){
 	}
 
 	// Calculate the closest stop
-	find_closest();
+	//find_closest();
 }
 
 function set_listener(marker, iw){
@@ -183,6 +183,12 @@ function find_closest(){
 }
 
 function haversine(lat1, lat2, lon1, lon2){
+	if (typeof(Number.prototype.toRad) === "undefined") {
+  		Number.prototype.toRad = function() {
+    	return this * Math.PI / 180;
+  		}
+	}
+
 	var R = 6371; // km
 	var dLat = (lat2-lat1).toRad();
 	var dLon = (lon2-lon1).toRad();
