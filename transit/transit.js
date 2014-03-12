@@ -9,12 +9,6 @@ var mapOptions = {
 var map;
 var marker;
 
-//var station = {
-//	stop_markers,
-//	content_string,
-//	infowindow = new google.maps.InfoWindow();
-//};
-
 var stop_markers = [];
 var content_string = [];
 var stop_counter = 0;
@@ -24,6 +18,8 @@ var train_path = [];
 var train_path2 = [];
 var poly_line;
 var poly_line2;
+var poly_close;
+var closest_path;
 var closest;
 
 var stops = [{"line":"blue", "name":"Bowdoin", "lat":42.361365, "lng":-71.062037},
@@ -129,7 +125,6 @@ function data_ready(){
 }
 
 function draw_stations(my_line){
-
 	// Loop through the array of stops and add stops of the correct line to the map
 	for (var i = 0; i < stops.length; i++){
 		if (stops[i].line == my_line){
@@ -150,12 +145,55 @@ function draw_stations(my_line){
 			stop_counter++;
 		}
 	}
+
+	// Calculate the closest stop
+	find_closest();
 }
 
 function set_listener(marker, iw){
 	google.maps.event.addListener(stop_markers[stop_counter], 'click', function() {
 		iw.open(map, marker);
 	});
+}
+
+function find_closest(){
+	closest = stop_markers[0];
+	var distance = haversine(me.lat, stop_markers[0].position.lat, me.lon, stop_markers[0].lon);
+	var compare = 0
+	for(var i = 0; i < stop_markers.length; i++){
+		compare = haversine(me.lat, stop_markers[i].position.lat, me.lon, stop_markers[i].lon);
+		if(compare < distance){
+			closest = stop_markers[i];
+		}
+	}
+
+	closest_path[0] = new google.maps.LatLng(me.lat, me.lon);
+	closest_path[1] = new google.maps.LatLng(closest.lat, closest.lon);
+
+	poly_close = new google.maps.Polyline({
+		path: closest_path,
+		geodesic: true,
+		strokeColor: '#000000',
+		strokeOpacity: 1.0,
+		strokeWeight: 10
+	});
+	poly_close.setMap(map);
+
+	console.log(distance);
+}
+
+function haversine(lat1, lat2, lon1, lon2){
+	var R = 6371; // km
+	var dLat = (lat2-lat1).toRad();
+	var dLon = (lon2-lon1).toRad();
+	var lat1 = lat1.toRad();
+	var lat2 = lat2.toRad();
+
+	var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	var d = R * c;
+
+	return d;
 }
 
 function draw_lines(my_line){
