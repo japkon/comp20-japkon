@@ -133,6 +133,8 @@ function data_ready(){
 }
 
 function draw_stations(my_line){
+	found = locate_me();
+	
 	// Loop through the array of stops and add stops of the correct line to the map
 	for (var i = 0; i < stops.length; i++){
 		var stop_info;
@@ -174,7 +176,6 @@ function draw_stations(my_line){
 
 	
 	// Calculate the closest stop
-	found = locate_me();
 	if (found == true){
 		find_closest();
 	}
