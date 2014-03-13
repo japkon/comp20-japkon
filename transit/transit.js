@@ -134,7 +134,7 @@ function draw_stations(my_line){
 				index: stop_counter
 			}));
 
-			stop_info = '<p>' + stops[i].name + '</p>' + '<table id="schedule"><tr><th>Direction</th><th>Next Train</th></tr>';
+			stop_info = '<p>' + stops[i].name + '</p>' + '<table id="schedule"><tr><th>Direction</th><th>Next Train <br> mm:ss</th></tr>';
 			for(var j = 0; j < schedule["schedule"].length; j++){
 				for(var k = 0; k < schedule["schedule"][j].Predictions.length; k++){
 					if(schedule["schedule"][j].Predictions[k]["Stop"] == stops[i].name){
@@ -161,7 +161,7 @@ function draw_stations(my_line){
 	}
 
 	// Calculate the closest stop
-	//find_closest();
+	find_closest();
 }
 
 function set_listener(marker, iw){
@@ -197,15 +197,15 @@ function find_closest(){
 }
 
 function haversine(lat1, lat2, lon1, lon2){
-	if (typeof(Number.prototype.toRad) === "undefined") {
-  		Number.prototype.toRad = function() {
-    	return this * Math.PI / 180;
-  		}
+	Number.prototype.toRad = function(){
+		return this * Math.PI / 180;
 	}
 
 	var R = 6371; // km
-	var dLat = (lat2-lat1).toRad();
-	var dLon = (lon2-lon1).toRad();
+	var temp1 = lat2 - lat1;
+	var dLat = temp1.toRad();
+	var temp2 = lon2 - lon1;
+	var dLon = temp2.toRad();
 	var lat1 = lat1.toRad();
 	var lat2 = lat2.toRad();
 
