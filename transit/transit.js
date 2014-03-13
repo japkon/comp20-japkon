@@ -182,7 +182,7 @@ function find_closest(){
 	}
 
 	closest_path[0] = new google.maps.LatLng(lat, lng);
-	closest_path[1] = new google.maps.LatLng(closest.lat, closest.lon);
+	closest_path[1] = new google.maps.LatLng(closest.position.lat, closest.position.lon);
 
 	poly_close = new google.maps.Polyline({
 		path: closest_path,
