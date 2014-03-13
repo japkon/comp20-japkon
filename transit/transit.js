@@ -97,7 +97,7 @@ function locate_me(){
 				render()
 			});
 		} finally {
-			return true;
+			return lat != 0;
 		}
 	} else {
 		alert("Location services are not supported by your browser.")
@@ -172,11 +172,12 @@ function draw_stations(my_line){
 		}
 	}
 
-	found = locate_me();
+	
 	// Calculate the closest stop
-	if (found == true){
-		find_closest();
+	while (found != true){
+		found = locate_me();
 	}
+	find_closest();
 }
 
 function set_listener(marker, iw){
