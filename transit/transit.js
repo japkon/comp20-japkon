@@ -197,23 +197,22 @@ function find_closest(){
 }
 
 function haversine(lat1, lat2, lon1, lon2){
-	Number.prototype.toRad = function(){
-		return this * Math.PI / 180;
-	}
 
 	var R = 6371; // km
-	var temp1 = lat2 - lat1;
-	var dLat = temp1.toRad();
-	var temp2 = lon2 - lon1;
-	var dLon = temp2.toRad();
-	var lat1 = lat1.toRad();
-	var lat2 = lat2.toRad();
+	var dLat = toRad(lat2 - lat1);
+	var dLon = toRad(lon2 - lon1);
+	var lat1 = toRad(lat1);
+	var lat2 = toRad(lat2);
 
 	var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
 	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
 	var d = R * c;
 
 	return d;
+}
+
+function toRad(num){
+	return num * Math.PI / 180;
 }
 
 function draw_lines(my_line){
