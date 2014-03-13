@@ -87,7 +87,6 @@ function initialize(){
 function locate_me(){
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
-			console.log("penis");
 			// Get my location
 			lat = position.coords.latitude;
 			lng = position.coords.longitude;
@@ -98,12 +97,6 @@ function locate_me(){
 			});
 			marker.setMap(map);
 			console.log("hello");
-
-			//info = new google.maps.InfoWindow({
-			//	content: my_distance.toString()
-			//});
-
-			//mywindow = set_listener(marker, info);
 
 			xhr = new XMLHttpRequest();
 			xhr.open("get", "http://mbtamap.herokuapp.com/mapper/rodeo.json", true); 
