@@ -174,6 +174,7 @@ function draw_stations(my_line){
 
 	
 	// Calculate the closest stop
+	found = locate_me();
 	while (found != true){
 		found = locate_me();
 	}
