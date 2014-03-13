@@ -23,6 +23,7 @@ var poly_close;
 var closest_path = [];
 var closest;
 var my_distance;
+var found;
 
 var stops = [{"line":"blue", "name":"Bowdoin", "lat":42.361365, "lng":-71.062037},
 		{"line":"blue", "name":"Government Center", "lat":42.359705, "lng":-71.05921499999999},
@@ -88,13 +89,16 @@ function initialize(){
 
 function locate_me(){
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function(position) {
-			// Get my location
-			lat = position.coords.latitude;
-			lng = position.coords.longitude;
-			render()
+		try {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				// Get my location
+				lat = position.coords.latitude;
+				lng = position.coords.longitude;
+				render()
+			});
+		} finally {
 			return true;
-		});
+		}
 	} else {
 		alert("Location services are not supported by your browser.")
 		return false;
@@ -115,6 +119,8 @@ function render(){
 	});
 
 	mywindow = set_listener(marker, info);
+
+
 }
 
 function data_ready(){
