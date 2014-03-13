@@ -87,6 +87,7 @@ function initialize(){
 function locate_me(){
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
+			console.log("penis");
 			// Get my location
 			lat = position.coords.latitude;
 			lng = position.coords.longitude;
@@ -96,12 +97,13 @@ function locate_me(){
 				title: "You are here at " + lat + " " + lng + "."
 			});
 			marker.setMap(map);
+			console.log("hello");
 
-			info = new google.maps.InfoWindow({
-				content: my_distance.toString()
-			});
+			//info = new google.maps.InfoWindow({
+			//	content: my_distance.toString()
+			//});
 
-			mywindow = set_listener(marker, info);
+			//mywindow = set_listener(marker, info);
 
 			xhr = new XMLHttpRequest();
 			xhr.open("get", "http://mbtamap.herokuapp.com/mapper/rodeo.json", true); 
@@ -114,21 +116,21 @@ function locate_me(){
 	}
 }
 
-function render(){
-	marker = new google.maps.Marker({
-		position: me,
-		title: "You are here at " + lat + " " + lng + "."
-	});
-	marker.setMap(map);
+// function render(){
+// 	marker = new google.maps.Marker({
+// 		position: me,
+// 		title: "You are here at " + lat + " " + lng + "."
+// 	});
+// 	marker.setMap(map);
 
-	info = new google.maps.InfoWindow({
-		content: my_distance.toString()
-	});
+// 	info = new google.maps.InfoWindow({
+// 		content: my_distance.toString()
+// 	});
 
-	mywindow = set_listener(marker, info);
+// 	mywindow = set_listener(marker, info);
 
 
-}
+// }
 
 function data_ready(){
 	if (xhr.readyState == 4 && xhr.status == 200) {
