@@ -22,6 +22,7 @@ var poly_line2;
 var poly_close;
 var closest_path = [];
 var closest;
+var my_distance;
 
 var stops = [{"line":"blue", "name":"Bowdoin", "lat":42.361365, "lng":-71.062037},
 		{"line":"blue", "name":"Government Center", "lat":42.359705, "lng":-71.05921499999999},
@@ -108,7 +109,11 @@ function render(){
 	});
 	marker.setMap(map);
 
-	set_listener(marker, mywindow);
+	info = new google.maps.InfoWindow({
+		content: my_distance
+	});
+
+	mywindow = set_listener(marker, info);
 }
 
 function data_ready(){
@@ -189,11 +194,11 @@ function find_closest(){
 		geodesic: true,
 		strokeColor: '#000000',
 		strokeOpacity: 1.0,
-		strokeWeight: 10
+		strokeWeight: 4
 	});
 	poly_close.setMap(map);
 
-	console.log(distance);
+	my_distance = distance;
 }
 
 function haversine(lat1, lat2, lon1, lon2){
