@@ -94,6 +94,8 @@ function locate_me(){
 			lat = position.coords.latitude;
 			lng = position.coords.longitude;
 			render()
+			// Calculate the closest stop
+			find_closest();
 		});
 	} else {
 		alert("Location services are not supported by your browser.")
@@ -164,9 +166,6 @@ function draw_stations(my_line){
 			stop_counter++;
 		}
 	}
-
-	// Calculate the closest stop
-	find_closest();
 }
 
 function set_listener(marker, iw){
@@ -284,17 +283,6 @@ function draw_lines(my_line){
 		poly_line2.setMap(map);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
