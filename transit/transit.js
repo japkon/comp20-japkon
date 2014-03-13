@@ -175,10 +175,9 @@ function draw_stations(my_line){
 	
 	// Calculate the closest stop
 	found = locate_me();
-	while (found != true){
-		found = locate_me();
+	if (found == true){
+		find_closest();
 	}
-	find_closest();
 }
 
 function set_listener(marker, iw){
