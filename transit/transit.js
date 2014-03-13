@@ -5,6 +5,7 @@ var mapOptions = {
 	center: new google.maps.LatLng(42.3581, -71.0636), // Center the map at Boston
 	mapTypeId: google.maps.MapTypeId.ROADMAP
 };
+var me = new google.maps.LatLng(lat, lng);
 var map;
 var mywindow;
 var marker;
@@ -80,6 +81,7 @@ var stops = [{"line":"blue", "name":"Bowdoin", "lat":42.361365, "lng":-71.062037
 
 function initialize(){
 	map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+	locate_me();
 	xhr = new XMLHttpRequest();
 	xhr.open("get", "http://mbtamap.herokuapp.com/mapper/rodeo.json", true); 
 	xhr.onreadystatechange = data_ready;
@@ -88,25 +90,19 @@ function initialize(){
 
 function locate_me(){
 	if (navigator.geolocation) {
-		try {
-			navigator.geolocation.getCurrentPosition(function(position) {
-				// Get my location
-				lat = position.coords.latitude;
-				lng = position.coords.longitude;
-				render()
-			});
-		} finally {
-			return lat != 0;
-		}
+		navigator.geolocation.getCurrentPosition(function(position) {
+			// Get my location
+			lat = position.coords.latitude;
+			lng = position.coords.longitude;
+			me = new google.maps.LatLng(lat, lng);
+			render()
+		});
 	} else {
 		alert("Location services are not supported by your browser.")
-		return false;
 	}
 }
 
 function render(){
-	me = new google.maps.LatLng(lat, lng);
-
 	marker = new google.maps.Marker({
 		position: me,
 		title: "You are here at " + lat + " " + lng + "."
@@ -132,7 +128,6 @@ function data_ready(){
 }
 
 function draw_stations(my_line){
-	found = locate_me();
 	
 	// Loop through the array of stops and add stops of the correct line to the map
 	for (var i = 0; i < stops.length; i++){
@@ -175,9 +170,7 @@ function draw_stations(my_line){
 
 	
 	// Calculate the closest stop
-	if (found == true){
-		find_closest();
-	}
+	find_closest();
 }
 
 function set_listener(marker, iw){
