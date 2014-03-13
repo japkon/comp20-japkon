@@ -191,13 +191,13 @@ function find_closest(){
 	});
 	poly_close.setMap(map);
 
-	distance = (distance * 0.621371).toString();
+	distance = ((distance * 0.621371).toFixed(2)).toString();
 	my_distance = distance;
 
-	// mywindow = new google.maps.InfoWindow({
-	// 	content: 'You are ' + my_distance + ' miles from the closest station.'
-	// });
-	// mywindow.open(map, me);
+	mywindow = new google.maps.InfoWindow({
+		content: 'You are ' + my_distance + ' miles from the closest station.'
+	});
+	mywindow.open(map, marker);
 }
 
 function haversine(lat1, lat2, lon1, lon2){
