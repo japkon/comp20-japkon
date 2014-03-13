@@ -173,10 +173,11 @@ function set_listener(marker, iw){
 function find_closest(){
 	closest = stop_markers[0];
 	var distance = haversine(lat, stop_markers[0].position.lat, lng, stop_markers[0].position.lng);
-	var compare = 0
+	var compare = haversine(lat, stop_markers[0].position.lat, lng, stop_markers[0].position.lng);
 	for(var i = 0; i < stop_markers.length; i++){
 		compare = haversine(lat, stop_markers[i].position.lat, lng, stop_markers[i].position.lng);
 		if(compare < distance){
+			distance = compare;
 			closest = stop_markers[i];
 		}
 	}
