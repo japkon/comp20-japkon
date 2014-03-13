@@ -1,6 +1,5 @@
 var lat = 0;
 var lng = 0;
-var me = new google.maps.LatLng(lat, lng);
 var mapOptions = {
 	zoom: 12,
 	center: new google.maps.LatLng(42.3581, -71.0636), // Center the map at Boston
@@ -106,7 +105,7 @@ function locate_me(){
 }
 
 function render(){
-	//me = new google.maps.LatLng(lat, lng);
+	me = new google.maps.LatLng(lat, lng);
 
 	marker = new google.maps.Marker({
 		position: me,
