@@ -3,10 +3,11 @@ var lng = 0;
 var me = new google.maps.LatLng(lat, lng);
 var mapOptions = {
 	zoom: 12,
-	center: new google.maps.LatLng(42.3581, -71.0636),
+	center: new google.maps.LatLng(42.3581, -71.0636), // Center the map at Boston
 	mapTypeId: google.maps.MapTypeId.ROADMAP
 };
 var map;
+var mywindow;
 var marker;
 
 var stop_markers = [];
@@ -100,8 +101,6 @@ function locate_me(){
 
 function render(){
 	me = new google.maps.LatLng(lat, lng);
-	// Move the map to my location
-	//map.panTo(me);
 
 	marker = new google.maps.Marker({
 		position: me,
@@ -109,10 +108,7 @@ function render(){
 	});
 	marker.setMap(map);
 
-	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.setContent(marker.title);
-		infowindow.open(map, marker);
-	});
+	set_listener(marker, mywindow);
 }
 
 function data_ready(){
@@ -127,6 +123,7 @@ function data_ready(){
 function draw_stations(my_line){
 	// Loop through the array of stops and add stops of the correct line to the map
 	for (var i = 0; i < stops.length; i++){
+		var stop_info;
 		if (stops[i].line == my_line){
 			stop_loc = new google.maps.LatLng(stops[i].lat, stops[i].lng)
 			stop_markers.push(new google.maps.Marker({
@@ -136,7 +133,24 @@ function draw_stations(my_line){
 				animation: google.maps.Animation.DROP,
 				index: stop_counter
 			}));
-			content_string.push(stops[i].name);
+
+			stop_info = '<p>' + stops[i].name + '</p>' + '<table id="schedule"><tr><th>Direction</th><th>Next Train</th></tr>';
+			for(var j = 0; j < schedule["schedule"].length; j++){
+				for(var k = 0; k < schedule["schedule"][j].Predictions.length; k++){
+					if(schedule["schedule"][j].Predictions[k]["Stop"] == stops[i].name){
+						var time 
+						if(schedule["schedule"][j].Predictions[k]["Seconds"]%60 < 10){
+							time = Math.floor(schedule["schedule"][j].Predictions[k]["Seconds"] / 60) + ":" + "0" 
+							+ Math.abs(schedule["schedule"][j].Predictions[k]["Seconds"]%60);
+						} else {
+							time = Math.floor(schedule["schedule"][j].Predictions[k]["Seconds"] / 60) + ":" 
+							+ Math.abs(schedule["schedule"][j].Predictions[k]["Seconds"]%60);
+						}
+						stop_info += '<tr><td>' + schedule["schedule"][j]["Destination"] + '</td><td>' + time + '</td></tr>';
+					}
+				}
+			}
+			content_string.push(stop_info);
 			stop_markers[stop_markers.length - 1].setMap(map);
 			info = new google.maps.InfoWindow({
 				content: content_string[stop_counter]
