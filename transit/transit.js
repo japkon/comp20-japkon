@@ -172,17 +172,17 @@ function set_listener(marker, iw){
 
 function find_closest(){
 	closest = stop_markers[0];
-	var distance = haversine(lat, stop_markers[0].position.lat, lng, stop_markers[0].lon);
+	var distance = haversine(lat, stop_markers[0].position.lat, lng, stop_markers[0].position.lng);
 	var compare = 0
 	for(var i = 0; i < stop_markers.length; i++){
-		compare = haversine(lat, stop_markers[i].position.lat, lng, stop_markers[i].lon);
+		compare = haversine(lat, stop_markers[i].position.lat, lng, stop_markers[i].position.lng);
 		if(compare < distance){
 			closest = stop_markers[i];
 		}
 	}
 
 	closest_path[0] = new google.maps.LatLng(lat, lng);
-	closest_path[1] = new google.maps.LatLng(closest.position.lat, closest.position.lon);
+	closest_path[1] = new google.maps.LatLng(closest.position.lat, closest.position.lng);
 
 	poly_close = new google.maps.Polyline({
 		path: closest_path,
