@@ -194,11 +194,10 @@ function find_closest(){
 	distance = (distance * 0.621371).toString();
 	my_distance = distance;
 
-	myinfo = new google.maps.InfoWindow({
-		content: 'You are ' + my_distance + ' miles from the closest station.'
-	});
-
-	mywindow = set_listener(me, myinfo);
+	// mywindow = new google.maps.InfoWindow({
+	// 	content: 'You are ' + my_distance + ' miles from the closest station.'
+	// });
+	// mywindow.open(map, me);
 
 
 }
