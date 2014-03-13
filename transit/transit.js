@@ -20,7 +20,7 @@ var train_path2 = [];
 var poly_line;
 var poly_line2;
 var poly_close;
-var closest_path;
+var closest_path = [];
 var closest;
 
 var stops = [{"line":"blue", "name":"Bowdoin", "lat":42.361365, "lng":-71.062037},
@@ -172,16 +172,16 @@ function set_listener(marker, iw){
 
 function find_closest(){
 	closest = stop_markers[0];
-	var distance = haversine(me.lat, stop_markers[0].position.lat, me.lon, stop_markers[0].lon);
+	var distance = haversine(lat, stop_markers[0].position.lat, lng, stop_markers[0].lon);
 	var compare = 0
 	for(var i = 0; i < stop_markers.length; i++){
-		compare = haversine(me.lat, stop_markers[i].position.lat, me.lon, stop_markers[i].lon);
+		compare = haversine(lat, stop_markers[i].position.lat, lng, stop_markers[i].lon);
 		if(compare < distance){
 			closest = stop_markers[i];
 		}
 	}
 
-	closest_path[0] = new google.maps.LatLng(me.lat, me.lon);
+	closest_path[0] = new google.maps.LatLng(lat, lng);
 	closest_path[1] = new google.maps.LatLng(closest.lat, closest.lon);
 
 	poly_close = new google.maps.Polyline({
