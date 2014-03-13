@@ -198,8 +198,6 @@ function find_closest(){
 	// 	content: 'You are ' + my_distance + ' miles from the closest station.'
 	// });
 	// mywindow.open(map, me);
-
-
 }
 
 function haversine(lat1, lat2, lon1, lon2){
