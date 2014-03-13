@@ -96,34 +96,16 @@ function locate_me(){
 				title: "You are here at " + lat + " " + lng + "."
 			});
 			marker.setMap(map);
-			console.log("hello");
 
 			xhr = new XMLHttpRequest();
 			xhr.open("get", "http://mbtamap.herokuapp.com/mapper/rodeo.json", true); 
 			xhr.onreadystatechange = data_ready;
 			xhr.send(null)
-			//render()
 		});
 	} else {
 		alert("Location services are not supported by your browser.")
 	}
 }
-
-// function render(){
-// 	marker = new google.maps.Marker({
-// 		position: me,
-// 		title: "You are here at " + lat + " " + lng + "."
-// 	});
-// 	marker.setMap(map);
-
-// 	info = new google.maps.InfoWindow({
-// 		content: my_distance.toString()
-// 	});
-
-// 	mywindow = set_listener(marker, info);
-
-
-// }
 
 function data_ready(){
 	if (xhr.readyState == 4 && xhr.status == 200) {
@@ -135,7 +117,6 @@ function data_ready(){
 }
 
 function draw_stations(my_line){
-	console.log("hi");
 	
 	// Loop through the array of stops and add stops of the correct line to the map
 	for (var i = 0; i < stops.length; i++){
@@ -210,7 +191,16 @@ function find_closest(){
 	});
 	poly_close.setMap(map);
 
+	distance = (distance * 0.621371).toString();
 	my_distance = distance;
+
+	myinfo = new google.maps.InfoWindow({
+		content: 'You are ' + my_distance + ' miles from the closest station.'
+	});
+
+	mywindow = set_listener(me, myinfo);
+
+
 }
 
 function haversine(lat1, lat2, lon1, lon2){
