@@ -106,7 +106,7 @@ function locate_me(){
 }
 
 function render(){
-	me = new google.maps.LatLng(lat, lng);
+	//me = new google.maps.LatLng(lat, lng);
 
 	marker = new google.maps.Marker({
 		position: me,
