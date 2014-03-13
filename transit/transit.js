@@ -165,7 +165,6 @@ function draw_stations(my_line){
 			stop_counter++;
 		}
 	}
-	var found;
 
 	found = locate_me();
 	// Calculate the closest stop
