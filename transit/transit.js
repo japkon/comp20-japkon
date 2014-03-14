@@ -1,3 +1,4 @@
+// Define a bunch of variables
 var lat = 0;
 var lng = 0;
 var mapOptions = {
@@ -25,6 +26,7 @@ var closest;
 var my_distance;
 var found;
 
+// Array of stops
 var stops = [{"line":"blue", "name":"Bowdoin", "lat":42.361365, "lng":-71.062037},
 		{"line":"blue", "name":"Government Center", "lat":42.359705, "lng":-71.05921499999999},
 		{"line":"blue", "name":"State Street", "lat":42.358978, "lng":-71.057598},
@@ -81,10 +83,12 @@ var stops = [{"line":"blue", "name":"Bowdoin", "lat":42.361365, "lng":-71.062037
 
 function initialize(){
 	map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+	// Find my location
 	locate_me();
 }
 
 function locate_me(){
+	// Check if geolocation is available
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			// Get my location
@@ -97,6 +101,7 @@ function locate_me(){
 			});
 			marker.setMap(map);
 
+			// Get the JSON and send it to a function
 			xhr = new XMLHttpRequest();
 			xhr.open("get", "http://mbtamap.herokuapp.com/mapper/rodeo.json", true); 
 			xhr.onreadystatechange = data_ready;
@@ -109,6 +114,7 @@ function locate_me(){
 
 function data_ready(){
 	if (xhr.readyState == 4 && xhr.status == 200) {
+		// Parse the JSON and find the correct line
 		schedule = JSON.parse(xhr.responseText);
 		my_line = schedule["line"];
 		draw_stations(my_line);
@@ -131,6 +137,7 @@ function draw_stations(my_line){
 				index: stop_counter
 			}));
 
+			// Loop through the JSON schedule to find upcoming trains and put them in to a table
 			stop_info = '<p>' + stops[i].name + '</p>' + '<table id="schedule"><tr><th>Direction</th><th>Next Train <br> mm:ss</th></tr>';
 			for(var j = 0; j < schedule["schedule"].length; j++){
 				for(var k = 0; k < schedule["schedule"][j].Predictions.length; k++){
@@ -147,6 +154,7 @@ function draw_stations(my_line){
 					}
 				}
 			}
+			// Define an info window for each marker
 			content_string.push(stop_info);
 			stop_markers[stop_markers.length - 1].setMap(map);
 			info = new google.maps.InfoWindow({
@@ -169,6 +177,7 @@ function set_listener(marker, iw){
 }
 
 function find_closest(){
+	// Loop through the stops to find the closest to the user location
 	closest = stop_markers[0];
 	var distance = haversine(me.lat(), stop_markers[0].position.lat(), me.lng(), stop_markers[0].position.lng());
 	for(var i = 0; i < stop_markers.length; i++){
@@ -182,6 +191,7 @@ function find_closest(){
 	closest_path[0] = new google.maps.LatLng(me.lat(), me.lng());
 	closest_path[1] = new google.maps.LatLng(closest.position.lat(), closest.position.lng());
 
+	// Draw the line
 	poly_close = new google.maps.Polyline({
 		path: closest_path,
 		geodesic: true,
@@ -216,6 +226,7 @@ function haversine(lat1, lat2, lon1, lon2){
 }
 
 function toRad(num){
+	// Convert number to radians
 	return num * Math.PI / 180;
 }
 
@@ -229,6 +240,7 @@ function draw_lines(my_line){
 			color = '#FF6600';
 		}
 
+		// Loop through the stops and add stations to the points on the line
 		for (var i = 0; i < stops.length; i++){
 			if (stops[i].line == my_line){
 				train_path[counter] = new google.maps.LatLng(stops[i].lat, stops[i].lng);
@@ -236,6 +248,7 @@ function draw_lines(my_line){
 			}
 		}
 
+		// Draw the line
 		poly_line = new google.maps.Polyline({
 			path: train_path,
 			geodesic: true,
@@ -245,6 +258,7 @@ function draw_lines(my_line){
 		});
 		poly_line.setMap(map);
 	} else {
+		// Split the red line in to 2 parts
 		color = '#FF0000';
 
 		// Draw the Braintree Red Line
