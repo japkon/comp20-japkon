@@ -7,20 +7,25 @@
 <title>Fecesbook</title>
 <script>
 	function addMessage(){
-		var message = document.getElementById("msg").value;
-		var timeStamp = new Date();
-		var month = timeStamp.getMonth() + 1;
-		var day = timeStamp.getDate();
-		var year = timeStamp.getFullYear();
-		var hour = timeStamp.getHours();
-		var minute = timeStamp.getMinutes();
-		var date = month + "/" + day + "/" + year + " " + hour + ":" + minute + " - ";
-		var message_and_date = date + message;
-		var node = document.createTextNode(message_and_date);
-		var list = document.getElementById("status");
-		list.insertBefore(node, list.firstChild);
-		var br = document.createElement("br");
-		list.insertBefore(br, list.firstChild);
+		message = document.getElementById("msg").value;
+		timeStamp = new Date();
+		month = timeStamp.getMonth() + 1;
+		day = timeStamp.getDate();
+		year = timeStamp.getFullYear();
+		hour = timeStamp.getHours();
+		minute = timeStamp.getMinutes();
+		date = month + "/" + day + "/" + year + " " + hour + ":" + minute + " - ";
+		message_and_date = date + message;
+		localStorage[new Date().getTime()] = message_and_date;
+		reload();
+	}
+	function reload(){
+		list = document.getElementById("status");
+		updates = "";
+		for(key in localStorage) {
+			updates = "<p>" + localStorage[key] + "</p>\n" + updates;
+		}
+		list.innerHTML = updates;
 	}
 </script>
 </head>
