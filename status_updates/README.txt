@@ -1,1 +1,3 @@
-This lab only took a couple of hours. The bulk of it was figuring out how to manipulate the DOM and create nodes. I could not figure out how to add more than one line break between updates (adding the same line of code twice didn't work), and there was an extra line break before the updates. Other than that, the list is in the correct order, with the correct time stamp.
+This lab only took a couple of hours. Most of the time was spent on the status_updates figuring how to get the status updates in the correct order from local storage. More time was spent trying to create the heroku app. I first just tried to copy the code they had written, but couldn't get it to work, so I started over and did it more carefully.
+
+Link to heroku app: http://shrouded-ravine-1107.herokuapp.com/
