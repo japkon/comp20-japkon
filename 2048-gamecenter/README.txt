@@ -1,0 +1,9 @@
+1. The server works as I intended. Both the submit.json API and the scores.json API work correctly, although I was not sure how to test CORS for scores.json, but I did enable it. When no API is specified, the server sends the index, which is a table of the all the scores. I wish I could have gotten the table to look a little better, and I would have liked to be able to hover over a score and see the final grid, but I didn't have enough time to start tinkering with that. I tried to model the table in the root off of the 2048 game itself, so I spent a while looking at Chrome Dev Tools and the CSS of the game to get the right colors. 
+
+2. I bounced some ideas off of people in office hours (can't remember names), but I found the biggest help was looking through Jasper's example on github, and trying to understand how that worked, and going to Ming's office hours to sort out some issues with CORS. 
+
+3. I spent probably around 10ish hours working on this project. The server itself wasn't too hard to set up because I had the example to guide me, but I spent a lot of the time making sure I knew what was happening, and a lot of the time was spent fiddling with how the table looked. 
+
+4. The score and grid are both stored in the game_manager.js file. Both are stored in the GameManager object. The score is in this.score, and the grid is in this.grid. 
+
+5. The only files I had to modify were the index.html file and the game_manager.js file. I had to add jQuery to the index.html file (I just used the link to google that was posted in the lecture notes), and I had to actual do the post request using jQuery after the game was terminated in the game_manager.js file. 
