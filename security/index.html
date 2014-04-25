@@ -4,18 +4,50 @@
 
 <head>
 	<title>Security Analysis</title>
+	<link rel="stylesheet" href="index.css"/>
 </head>
 
 <body>
 	<h1>Security Analysis of 2048 Gamecenter</h1>
 
 	<h2>Introduction</h2>
+	<p>A 2048 Gamecenter will be tested, and issues/vulnerabilities will be documented.</p>
 
 	<h2>Methodology</h2>
+	<p>The testing was done by first examining the app (without viewing the code), and listing things that might be useful to test. Next, I read the code for the app, and began testing with curl. At first I simply posted valid data just to see that the program worked correctly, then I tried more harmful data.</p>
 
 	<h2>Abstract</h2>
+	<p>The issues found fell into two categories: storage capacity and user input validation.</p>
 
 	<h2>Issues Found</h2>
+	<p><strong>Fields can be left blank</strong>
+	<ul><li>Not checking for blank user input</li>
+	<li>Location of the issue: the submit.json request.</li>
+	<li>Severity of Issue: Medium. The table could have completely blank data, which defeats the purpose of the table</li>
+	<li>Description: When doing the submit.json POST request, not all fields are required. A field (or fields) can be left blank, and the data will still be sent to the server.</li>
+	<li>Proof:<br><img src="blankfield.png" alt="blank_field_pic"></li>
+	<li>Resolution: validate that all fields are filled in the POST request</li></ul></p>
+
+	<p><strong>Mongo storage limit on Heroku</strong></p>
+	<ul><li>There is not an unlimited amount of storage on MongoDB through Heroku</li>
+	<li>Location of the issue: on Heroku, and Heroku's use of Mongo</li>
+	<li>Severity of the Issue: Low at first because 50mb of data is a lot for text, but once it is full the severity becomes high because the app will shut down</li>
+	<li>Description: Posted data fills up space in the database, and because Heroku starts out as free, only a certain amount of space is given for each free app</li>
+	<li>Proof: Heroku's rules</li>
+	<li>Resolution: Either paying Heroku to get more space, or moving the servers to a local computer and increasing storage when needed</li>
+	</ul></p>
+
+	<p><strong>Mongo storage limit on Heroku</strong></p>
+	<ul><li>There is not an unlimited amount of storage on MongoDB through Heroku</li>
+	<li>Location of the issue: on Heroku, and Heroku's use of Mongo</li>
+	<li>Severity of the Issue: Low at first because 50mb of data is a lot for text, but once it is full the severity becomes high because the app will shut down</li>
+	<li>Description: Posted data fills up space in the database, and because Heroku starts out as free, only a certain amount of space is given for each free app</li>
+	<li>Proof: Heroku's rules</li>
+	<li>Resolution: Either paying Heroku to get more space, or moving the servers to a local computer and increasing storage when needed</li>
+	</ul></p>
+
+	<h2>Conclusion</h2>
+	<p>Validating the user input would solve a lot of security issues. It would make sure no blank entries made it into the database, and users would not be allowed to inject JavaScript or other malicious things.</p>
 </body>
 
 </html>
